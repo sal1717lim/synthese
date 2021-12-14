@@ -152,14 +152,59 @@ int main()
     glfwSetFramebufferSizeCallback(window, Resize);
 
     glfwMakeContextCurrent(window);
-    float vertices[] = {
-            1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-            0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-            -1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    struct STRVertex
+    {
+        vec3 position;
+        vec3 couleur;
     };
+
+    unsigned int vertex_index []={
+            0,1,2,2,3,0,4,1,0,4,2,3,4,0,1,4,3,0,
+            0+5,1+5,2+5,2+5,3+5,0+5,4,1+5,0+5,4,2+5,3+5,4,0+5,1+5,4,3+5,0+5
+
+    };
+    STRVertex vertices[] = {
+            vec3(1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.0f, 0.50f, 0.0f), vec3(1.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+    };
+    /*
+    STRVertex vertices[] = {
+            vec3(1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+
+            vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(-1.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 1.0f),
+            vec3(1.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+
+            vec3(0.0f, 1.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-1.0f, 0.0f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(-1.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+
+
+            vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(-1.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 1.0f),
+
+
+
+            vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 1.0f),
+            vec3(1.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+    };*/
     GLuint VAO;
     GLuint VBO;
-
+    GLuint IBO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
@@ -167,10 +212,15 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &IBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36*sizeof(unsigned int), vertex_index, GL_STATIC_DRAW);
     //- Lier le premier buffer d'attributs (les sommets) et configurer le pointeur :
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat) , (void*)0 );
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,  sizeof(STRVertex) , (void*) offsetof(STRVertex,position) );
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat) , (void*)(sizeof(float)*3) );
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(STRVertex) , (void*) offsetof(STRVertex,couleur) );
+
     //- On indique à OpenGL qu'on utilise un attribut donné :
     glEnableVertexAttribArray(0);
     //- Débinder le VAO et le VBO :
@@ -178,24 +228,30 @@ int main()
     glBindVertexArray(0);
     GLuint ShaderProgram=LoadShaders("C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleVertexShader.vertexshader","C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleFragmentShader.fragmentshader");
 
-    mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-    mat4 View = lookAt(vec3(0,0,5),vec3(0,0,0),vec3(0,1,0) );
+    mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 1000.0f);
+    mat4 View = lookAt(vec3(2,2,5),vec3(0,0,0),vec3(0,1,0) );
     mat4 Model = mat4(1.0f);
-    Model = translate(Model,vec3(-1.0f, 0.0f, 0.0f));
+   /* Model = translate(Model,vec3(-1.0f, 0.0f, 0.0f));
     Model = scale(Model,vec3(2.5f, 1.5f ,1.0f));
-    Model = rotate(Model,radians(45.0f),vec3(0.0f,0.0f,1.0f));
+    Model = rotate(Model,radians(45.0f),vec3(0.0f,0.0f,1.0f));*/
     mat4 MVP = Projection * View * Model;
     GLuint MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
 
-
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
     while (!glfwWindowShouldClose(window))
-    {   glUseProgram(ShaderProgram);
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+        glUseProgram(ShaderProgram);
         glClear(GL_COLOR_BUFFER_BIT);
         //- Lier le VAO :
         glBindVertexArray(VAO);
         //- Dessiner le triangle :
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
+        Model = rotate(Model,radians(90.0f),vec3(0.0f,0.0f,1.0f));
+        mat4 MVP = Projection * View * Model;
+        GLuint MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
 
         glfwSwapBuffers(window);
         glfwPollEvents();
