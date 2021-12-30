@@ -614,6 +614,50 @@ int main()
             vec3(0.34f, -1.00f, -0.330f), vec3(1.0f, 0.5f, 0.15f),
             vec3(1.0f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
             vec3(1.0f, -1.00, -0.330f), vec3(1.0f, 0.5f, 0.15f),
+
+
+            /*bordure noir*/
+            vec3(-0.99f, 0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, 0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, 0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.99f, -0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            /**/
+            vec3(0.99f, 0.99f, -0.99f), vec3(00.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, -0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, 0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99f, 0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, -0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
+            vec3(-0.99f, 0.99f, -0.99f), vec3(0.0f, 0.0f, 0.0f),
     };
     cout <<sizeof (vertices)/sizeof (STRVertex)<<endl;
     GLuint VAO;
@@ -638,7 +682,7 @@ int main()
     GLuint ShaderProgram=LoadShaders("C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleVertexShader.vertexshader","C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleFragmentShader.fragmentshader");
 
     mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-    mat4 View = lookAt(vec3(4,2,5),vec3(0,0,0),vec3(0,1,0) );
+    mat4 View = lookAt(vec3(-4,-2,-5),vec3(0,0,0),vec3(0,1,0) );
     mat4 Model = mat4(1.0f);
 
 
