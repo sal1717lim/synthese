@@ -682,20 +682,25 @@ int main()
     GLuint ShaderProgram=LoadShaders("C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleVertexShader.vertexshader","C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleFragmentShader.fragmentshader");
 
     mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-    mat4 View = lookAt(vec3(-4,-2,-5),vec3(0,0,0),vec3(0,1,0) );
+    mat4 View ;
     mat4 Model = mat4(1.0f);
 
 
 
-    mat4 MVP = Projection * View * Model;
+
     GLuint MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-
+    mat4 MVP;
     while (!glfwWindowShouldClose(window))
     {   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
         glUseProgram(ShaderProgram);
-
+        float rayon = 5.0;
+        float Xcam = rayon * sin(glfwGetTime());
+        float Zcam = rayon * cos(glfwGetTime());
+        float Ycam = rayon * cos(glfwGetTime());
+        View = lookAt(vec3(Xcam, Ycam, Zcam),vec3(0,0,0),vec3(0,1,0) );
+        MVP = Projection * View * Model;
         glClear(GL_COLOR_BUFFER_BIT);
         //- Lier le VAO :
         glBindVertexArray(VAO);
