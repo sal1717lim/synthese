@@ -16,6 +16,11 @@ using namespace glm;
 #include <string.h>
 
 #include <glad/glad.h>
+struct STRVertex
+{
+    vec3 position;
+    vec3 couleur;
+};
 
 GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path){
 
@@ -106,12 +111,6 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
 
     return ProgramID;
 }
-
-
-
-
-
-
 using namespace std;
 
 static void error_callback(int error, const char *description)
@@ -152,59 +151,474 @@ int main()
     glfwSetFramebufferSizeCallback(window, Resize);
 
     glfwMakeContextCurrent(window);
-    struct STRVertex
-    {
-        vec3 position;
-        vec3 couleur;
-    };
 
-    unsigned int vertex_index []={
-            0,1,2,2,3,0,4,1,0,4,2,3,4,0,1,4,3,0,
-            0+5,1+5,2+5,2+5,3+5,0+5,4,1+5,0+5,4,2+5,3+5,4,0+5,1+5,4,3+5,0+5
-
-    };
     STRVertex vertices[] = {
-            vec3(1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(0.0f, 0.50f, 0.0f), vec3(1.0f, 0.0f, 1.0f),
-            vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 1.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(1.0f, 1.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            /*FaceRouge*/
+            /**/
+            vec3(-1.0f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-1.0f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-1.0f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.33f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.330f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.330f, 0.35f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+            vec3(0.33f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.330f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.33f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, 0.34f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+
+
+
+
+
+            /**/
+            vec3(-1.0f, 0.33f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, 0.33f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-1.0f, 0.-0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, 0.33f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-1.0f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.33f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.330f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.330f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+            vec3(0.33f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.330f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.33f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, -0.32f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+
+
+
+            /**/
+            vec3(-1.0f, -0.33f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, -0.33f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-1.0f, 0.-1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, -0.33f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-1.0f, -1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.34f, -1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+            vec3(-0.33f, -0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, -0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.330f, -1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, -0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(-0.330f, -1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.32f, -1.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            /**/
+            vec3(0.33f, -0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, -0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.330f, -1.00f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(0.33f, -1.00f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, -0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+            vec3(1.0f, -1.00f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
+
+
+
+            /*Face Bleu*/
+            /**/
+            vec3(-1.0f, 1.00f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.00f, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.00f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+            vec3(-0.330f, 1.00f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.330f, 1.00f, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.33f, 1.00f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+            vec3(0.340f, 1.00f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.340f, 1.00f, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.34f, 1.00f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, 0.34f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, 1.0f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+
+
+
+            /**/
+            /**/
+            vec3(-1.0f, 1.00f, 0.33f) ,vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.00f, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.00f, 0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, 0.33f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+            vec3(-0.330f, 1.00f, 0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.330f, 1.00f, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.33f, 1.00f, 0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, 0.33f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+            vec3(0.340f, 1.00f, 0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.340f, 1.00f, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.34f, 1.00f, 0.330f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, -0.32f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, 0.330f), vec3(0.0f, 0.0f, 1.0f),
+
+            /**/
+
+
+
+            /**/
+            vec3(-1.0f, 1.00f, -0.33f) ,vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.00f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-1.0f, 1.00f, -0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.340f, 1.00, -0.33f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+            vec3(-0.330f, 1.00f, -0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.330f, 1.00f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(-0.33f, 1.00f, -0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.320f, 1.00, -0.33f), vec3(0.0f, 0.0f, 1.0f),
+            /**/
+            vec3(0.340f, 1.00f, -0.33f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.340f, 1.00f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(0.34f, 1.00f, -0.330f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, -1.0f), vec3(0.0f, 0.0f, 1.0f),
+            vec3(1.0f, 1.00, -0.330f), vec3(0.0f, 0.0f, 1.0f),
+
+            /*face Blanche*/
+
+
+            /**/
+            vec3(1.0f, 1.00f, 1.0f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 1.00f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.34, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 1.00f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.34, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, 0.34, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            /**/
+            vec3(1.0f, 1.00f, 0.33f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 1.00f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.34, 0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 1.00f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.34, 0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, 0.34, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            /**/
+            vec3(1.0f, 1.00f, -0.33f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 1.00f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.34, -0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 1.00f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.34, -0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, 0.34, -1.00f), vec3(1.0f, 1.0f, 1.0f),
+
+            /**/
+
+
+
+            /**/
+
+            /**/
+            vec3(1.0f, 0.33f, 1.0f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.33f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.32f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.33f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.32f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, -0.32f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            /**/
+            vec3(1.0f, 0.33f, 0.33f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.33f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.32f, 0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.33f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.32f, 0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, -0.32f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            /**/
+            vec3(1.0f, 0.33f, -0.33f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.33f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.32f, -0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, 0.33f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.32f, -0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, -0.32f, -1.00f), vec3(1.0f, 1.0f, 1.0f),
+
+            /**/
+
+
+            /**/
+            vec3(1.0f, -0.33f, 1.0f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.33f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -1.00f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.33f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -1.00f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, -1.00f, 0.34f), vec3(1.0f, 1.0f, 1.0f),
+            /**/
+            vec3(1.0f, -0.33f, 0.33f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.33f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -1.00f, 0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.33f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -1.00f, 0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, -1.00f, -0.32f), vec3(1.0f, 1.0f, 1.0f),
+            /**/
+            vec3(1.0f, -0.33f, -0.33f) ,vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.33f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -1.00f, -0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -0.33f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.0f, -1.00f, -0.33f), vec3(1.0f, 1.0f, 1.0f),
+            vec3(1.01, -1.00f, -1.00f), vec3(1.0f, 1.0f, 1.0f),
+
+
+            /*Face verte*/
+
+
+            /**/
+            vec3(-1.0f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+            vec3(-0.33f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.330f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.330f, 0.35f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+            vec3(0.33f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.330f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.33f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, 1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, 0.34f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+
+
+
+
+
+            /**/
+            vec3(-1.0f, 0.33f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, 0.33f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.-0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, 0.33f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+            vec3(-0.33f, 0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, 0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.330f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, 0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.330f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+            vec3(0.33f, 0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, 0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.330f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.33f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, 0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, -0.32f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+
+
+
+            /**/
+            vec3(-1.0f, -0.33f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, -0.33f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.-1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, -0.33f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.34f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+            vec3(-0.33f, -0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, -0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.330f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, -0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(-0.330f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.32f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            /**/
+            vec3(0.33f, -0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, -0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.330f, -1.00f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(0.33f, -1.00f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, -0.330f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+            vec3(1.0f, -1.00f, -1.0f), vec3(0.0f, 1.0f, 0.0f),
+
+
+
+            /*Face jaune*/
+
+            vec3(-1.0f, 1.00f, 1.0f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 1.00f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34, 1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 1.00f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34, 1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, 0.34, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            /**/
+            vec3(-1.0f, 1.00f, 0.33f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 1.00f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34, 0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 1.00f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34, 0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, 0.34, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            /**/
+            vec3(-1.0f, 1.00f, -0.33f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 1.00f, -1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34, -0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 1.00f, -1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.34, -0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, 0.34, -1.00f), vec3(0.98f, 1.0f, 0.0f),
+
+            /**/
+
+
+
+            /**/
+
+            /**/
+            vec3(-1.0f, 0.33f, 1.0f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.33f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, 1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.33f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, 1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, -0.32f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            /**/
+            vec3(-1.0f, 0.33f, 0.33f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.33f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, 0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.33f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, 0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, -0.32f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            /**/
+            vec3(-1.0f, 0.33f, -0.33f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.33f, -1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, -0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, 0.33f, -1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.32f, -0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, -0.32f, -1.00f), vec3(0.98f, 1.0f, 0.0f),
+
+            /**/
+
+
+            /**/
+            vec3(-1.0f, -0.33f, 1.0f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.33f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.00f, 1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.33f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.00f, 1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, -1.00f, 0.34f), vec3(0.98f, 1.0f, 0.0f),
+            /**/
+            vec3(-1.0f, -0.33f, 0.33f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.33f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.00f, 0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.33f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.00f, 0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, -1.00f, -0.32f), vec3(0.98f, 1.0f, 0.0f),
+            /**/
+            vec3(-1.0f, -0.33f, -0.33f) ,vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.33f, -1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.00f, -0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -0.33f, -1.0f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.0f, -1.00f, -0.33f), vec3(0.98f, 1.0f, 0.0f),
+            vec3(-1.01, -1.00f, -1.00f), vec3(0.98f, 1.0f, 0.0f),
+
+
+            /*face orange*/
+
+            vec3(-1.0f, -1.00f, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-1.0f, -1.00f, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-1.0f, -1.00f, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+            vec3(-0.330f, -1.00f, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.330f, -1.00f, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.33f, -1.00f, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+            vec3(0.340f, -1.00f, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.340f, -1.00f, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.34f, -1.00f, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, 0.34f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, 1.0f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+
+
+
+            /**/
+            /**/
+            vec3(-1.0f, -1.00f, 0.33f) ,vec3(1.0f, 0.5f, 0.15f),
+            vec3(-1.0f, -1.00f, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-1.0f, -1.00f, 0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, 0.33f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+            vec3(-0.330f, -1.00f, 0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.330f, -1.00f, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.33f, -1.00f, 0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, 0.33f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+            vec3(0.340f, -1.00f, 0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.340f, -1.00f, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.34f, -1.00f, 0.330f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, -0.32f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, 0.330f), vec3(1.0f, 0.5f, 0.15f),
+
+            /**/
+
+
+
+            /**/
+            vec3(-1.0f, -1.00f, -0.33f) ,vec3(1.0f, 0.5f, 0.15f),
+            vec3(-1.0f, -1.00f, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-1.0f, -1.00f, -0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.340f, -1.00, -0.33f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+            vec3(-0.330f, -1.00f, -0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.330f, -1.00f, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(-0.33f, -1.00f, -0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.320f, -1.00, -0.33f), vec3(1.0f, 0.5f, 0.15f),
+            /**/
+            vec3(0.340f, -1.00f, -0.33f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.340f, -1.00f, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(0.34f, -1.00f, -0.330f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, -1.0f), vec3(1.0f, 0.5f, 0.15f),
+            vec3(1.0f, -1.00, -0.330f), vec3(1.0f, 0.5f, 0.15f),
     };
-    /*
-    STRVertex vertices[] = {
-            vec3(1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(-1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(1.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, 1.0f),
-            vec3(1.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f),
-
-            vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f),
-            vec3(-1.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 1.0f),
-            vec3(1.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
-
-            vec3(0.0f, 1.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f),
-            vec3(-1.0f, 0.0f, -1.0f), vec3(1.0f, 1.0f, 1.0f),
-            vec3(-1.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
-
-
-            vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f),
-            vec3(1.0f, 0.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f),
-            vec3(-1.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 1.0f),
-
-
-
-            vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f),
-            vec3(1.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 1.0f),
-            vec3(1.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
-    };*/
+    cout <<sizeof (vertices)/sizeof (STRVertex)<<endl;
     GLuint VAO;
     GLuint VBO;
-    GLuint IBO;
+
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
@@ -212,15 +626,10 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glGenBuffers(1, &IBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36*sizeof(unsigned int), vertex_index, GL_STATIC_DRAW);
     //- Lier le premier buffer d'attributs (les sommets) et configurer le pointeur :
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,  sizeof(STRVertex) , (void*) offsetof(STRVertex,position) );
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(STRVertex) , (void*)offsetof(STRVertex,position) );
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(STRVertex) , (void*) offsetof(STRVertex,couleur) );
-
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(STRVertex) , (void*)offsetof(STRVertex,couleur) );
     //- On indique à OpenGL qu'on utilise un attribut donné :
     glEnableVertexAttribArray(0);
     //- Débinder le VAO et le VBO :
@@ -228,30 +637,27 @@ int main()
     glBindVertexArray(0);
     GLuint ShaderProgram=LoadShaders("C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleVertexShader.vertexshader","C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleFragmentShader.fragmentshader");
 
-    mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 1000.0f);
-    mat4 View = lookAt(vec3(2,2,5),vec3(0,0,0),vec3(0,1,0) );
+    mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+    mat4 View = lookAt(vec3(4,2,5),vec3(0,0,0),vec3(0,1,0) );
     mat4 Model = mat4(1.0f);
-   /* Model = translate(Model,vec3(-1.0f, 0.0f, 0.0f));
-    Model = scale(Model,vec3(2.5f, 1.5f ,1.0f));
-    Model = rotate(Model,radians(45.0f),vec3(0.0f,0.0f,1.0f));*/
+
+
+
     mat4 MVP = Projection * View * Model;
     GLuint MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
-
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+
     while (!glfwWindowShouldClose(window))
-    {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+    {   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
         glUseProgram(ShaderProgram);
+
         glClear(GL_COLOR_BUFFER_BIT);
         //- Lier le VAO :
         glBindVertexArray(VAO);
         //- Dessiner le triangle :
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
-        Model = rotate(Model,radians(90.0f),vec3(0.0f,0.0f,1.0f));
-        mat4 MVP = Projection * View * Model;
-        GLuint MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
+        glDrawArrays(GL_TRIANGLES, 0, sizeof (vertices)/sizeof (STRVertex));
 
         glfwSwapBuffers(window);
         glfwPollEvents();
