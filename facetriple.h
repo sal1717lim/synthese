@@ -1,9 +1,9 @@
 //
-// Created by SALIM on 30/12/2021.
+// Created by SALIM on 28/01/2022.
 //
 
-#ifndef HELLOGLFW_CUBE_H
-#define HELLOGLFW_CUBE_H
+#ifndef HELLOGLFW_FACETRIPLE_H
+#define HELLOGLFW_FACETRIPLE_H
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <stdlib.h>
@@ -15,18 +15,22 @@
 #include <fstream>
 #include "glm/glm.hpp"
 #include "glm/gtx/transform.hpp"
-#include "Cube.h"
 #include <algorithm>
 using namespace std;
 using namespace glm;
+
 #include <glad/glad.h>
+#include "strvertex.h"
 
+class facetriple {
+    public:
+    GLuint VAO;
+    GLuint VBO;
 
-class Cube {
-public:             // Access specifier
-         // Attribute (int variable)
-
+    STRVertex attribut[18] ;
+    facetriple();
+    facetriple(int nb);
 };
 
 
-#endif //HELLOGLFW_CUBE_H
+#endif //HELLOGLFW_FACETRIPLE_H
