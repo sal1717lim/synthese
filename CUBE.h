@@ -26,8 +26,8 @@ public:
     facedouble Bordure[12];
 
     CUBE();
-    void render();
-    void rotate1(mat4 *p,mat4 *v,mat4 *m,mat4 *mvp,GLuint *MatrixID);
+    void render(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID);
+    void rotate1(mat4 *p,mat4 *v,mat4 *m,mat4 mvp,GLuint *MatrixID);
 
 
 };

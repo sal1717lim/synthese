@@ -180,7 +180,6 @@ int main()
     View = lookAt(vec3(-2, 2, 5),vec3(0,0,0),vec3(0,1,0) );
 
     glUseProgram(ShaderProgram);
-    int update=1;
 
     while (!glfwWindowShouldClose(window))
     {   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
@@ -195,13 +194,11 @@ int main()
 
 
 
-        rublicx.rotate1(&Projection,&View,&Model,&MVP,&MatrixID);
-        rublicx.render();
-        Model=mat4(1.0);
-        /*MVP=Projection*View*Model;*/
 
+        rublicx.render(&Projection,&View,&Model,MVP,&MatrixID);
 
-        //MVP = Projection * View * Model;
+        rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID);
+
 
 
         glfwSwapBuffers(window);

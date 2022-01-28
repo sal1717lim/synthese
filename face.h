@@ -26,7 +26,7 @@ public:
 
     GLuint VAO;
     GLuint VBO;
-
+    mat4 model;
     STRVertex attribut[6] ;
     face();
     face(int nb);

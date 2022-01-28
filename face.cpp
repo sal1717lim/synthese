@@ -20,7 +20,7 @@ face::face(){
    }
 };
 face::face(int nb) {
-
+    this->model=mat4(1.0);
     switch(nb){
         case 0: {
             STRVertex attribut[] = {
