@@ -7,6 +7,7 @@
 #include "facetriple.h"
 #include "face.h"
 #include "facedouble.h"
+#include <glfw/glfw3.h>
 class CUBE {
 public:
     facetriple coinsarrieredroithaut;
@@ -24,10 +25,16 @@ public:
     face droite;
     face gauche;
     facedouble Bordure[12];
-
+    facegenrique* disposition[3][3][3];
     CUBE();
     void render(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID);
-    void rotate1(mat4 *p,mat4 *v,mat4 *m,mat4 mvp,GLuint *MatrixID);
+    void rotate1(mat4 *p,mat4 *v,mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window);
+    void rotate2(mat4 *p,mat4 *v,mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window);
+    void rotate3(mat4 *p,mat4 *v,mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window);
+    void rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window);
+    void rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window);
+    void rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window);
+
 
 
 };

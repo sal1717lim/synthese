@@ -2,8 +2,8 @@
 // Created by SALIM on 28/01/2022.
 //
 
-#ifndef HELLOGLFW_FACE_H
-#define HELLOGLFW_FACE_H
+#ifndef HELLOGLFW_FACEGENRIQUE_H
+#define HELLOGLFW_FACEGENRIQUE_H
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 #include <stdlib.h>
@@ -22,19 +22,11 @@ using namespace glm;
 #include <glad/glad.h>
 #include "strvertex.h"
 #include "facegenrique.h"
-class face : public facegenrique
-        {
+
+class facegenrique {
 public:
-
-    GLuint VAO;
-    GLuint VBO;
-    STRVertex attribut[6] ;
-    face();
-    face(int nb);
-
-    void load();
-
+    mat4 model;
 };
 
 
-#endif //HELLOGLFW_FACE_H
+#endif //HELLOGLFW_FACEGENRIQUE_H

@@ -21,12 +21,12 @@ using namespace glm;
 
 #include <glad/glad.h>
 #include "strvertex.h"
-
-class facetriple {
+#include "facegenrique.h"
+class facetriple : public facegenrique{
     public:
     GLuint VAO;
     GLuint VBO;
-    mat4 model;
+
     STRVertex attribut[18] ;
     facetriple();
     facetriple(int nb);

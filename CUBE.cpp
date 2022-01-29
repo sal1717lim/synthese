@@ -3,6 +3,7 @@
 //
 
 #include "CUBE.h"
+#include <glfw/glfw3.h>
 CUBE::CUBE() {
     this->haut=face(1);
     this->droite=face(2);
@@ -30,7 +31,36 @@ CUBE::CUBE() {
     this->coinsavantdroithaut= facetriple(6)   ;
     this->coinsavantgauchebas= facetriple(5)   ;
     this->coinsavantgauchehaut= facetriple(0)   ;
+    disposition[0][0][0]=new facetriple();
+    disposition[0][0][0]=&this->coinsarrieregauchehaut;
+    disposition[0][1][0]=&this->Bordure[8];
+    disposition[0][2][0]=&this->coinsarrieredroithaut;
+    disposition[1][0][0]=&this->Bordure[4];
+    disposition[1][1][0]=&this->haut;
+    disposition[1][2][0]=&this->Bordure[7];
+    disposition[2][0][0]=&this->coinsavantgauchehaut;
+    disposition[2][1][0]=&this->Bordure[0];
+    disposition[2][2][0]=&this->coinsavantdroithaut;
 
+    disposition[0][0][1]=&this->Bordure[9];
+    disposition[0][1][1]=&this->arriere;
+    disposition[0][2][1]=&this->Bordure[11];
+    disposition[1][0][1]=&this->gauche;
+    disposition[1][2][1]=&this->droite;
+    disposition[2][0][1]=&this->Bordure[1];
+    disposition[2][1][1]=&this->avant;
+    disposition[2][2][1]=&this->Bordure[2];
+
+
+    disposition[0][0][2]=&this->coinsarrieregauchebas;
+    disposition[0][1][2]=&this->Bordure[10];
+    disposition[0][2][2]=&this->coinsarrieredroitbas;
+    disposition[1][0][2]=&this->Bordure[5];
+    disposition[1][1][2]=&this->bas;
+    disposition[1][2][2]=&this->Bordure[6];
+    disposition[2][0][2]=&this->coinsavantgauchebas;
+    disposition[2][1][2]=&this->Bordure[3];
+    disposition[2][2][2]=&this->coinsavantdroitbas;
 
 }
 void CUBE::render(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID) {
@@ -132,17 +162,253 @@ void CUBE::render(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID) {
     }
 
 }
-void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID) {
+void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+    for (float i=0;i<90;i=i+0.1)
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+
+        this->disposition[0][0][0]->model = rotate(this->disposition[0][0][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][1][0]->model = rotate(this->disposition[0][1][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][2][0]->model = rotate(this->disposition[0][2][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[1][0][0]->model = rotate(this->disposition[1][0][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[1][1][0]->model = rotate(this->disposition[1][1][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[1][2][0]->model = rotate(this->disposition[1][2][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[2][0][0]->model = rotate(this->disposition[2][0][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[2][1][0]->model = rotate(this->disposition[2][1][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[2][2][0]->model = rotate(this->disposition[2][2][0]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->render(p, v, m,mvp,MatrixID);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+
+    }
+        facegenrique *tmp=this->disposition[0][0][0];
+        this->disposition[0][0][0]= this->disposition[2][0][0];
+        this->disposition[2][0][0]=tmp;
+
+        tmp=this->disposition[0][0][0];
+        this->disposition[0][0][0]= this->disposition[2][2][0];
+        this->disposition[2][2][0]=tmp;
+
+        tmp=this->disposition[0][0][0];
+        this->disposition[0][0][0]= this->disposition[0][2][0];
+        this->disposition[0][2][0]=tmp;
+
+        tmp=this->disposition[0][1][0];
+        this->disposition[0][1][0]= this->disposition[1][0][0];
+        this->disposition[1][0][0]=tmp;
+
+        tmp=this->disposition[0][1][0];
+        this->disposition[0][1][0]= this->disposition[2][1][0];
+        this->disposition[2][1][0]=tmp;
+
+        tmp=this->disposition[0][1][0];
+        this->disposition[0][1][0]= this->disposition[1][2][0];
+        this->disposition[1][2][0]=tmp;
 
 
-        this->coinsavantdroithaut.model= rotate(this->coinsavantdroithaut.model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->coinsavantgauchehaut.model= rotate(this->coinsavantgauchehaut.model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->coinsarrieregauchehaut.model= rotate(this->coinsarrieregauchehaut.model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->coinsarrieredroithaut.model= rotate(this->coinsarrieredroithaut.model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->haut.model= rotate(this->haut.model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->Bordure[0].model=rotate(this->Bordure[0].model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->Bordure[4].model=rotate(this->Bordure[4].model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->Bordure[7].model=rotate(this->Bordure[7].model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
-        this->Bordure[8].model=rotate(this->Bordure[8].model,radians(0.1f),vec3(0.0f,1.0f,0.0f));
+}
+void CUBE::rotate2(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+    for (float i=0;i<90;i=i+0.1) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        this->disposition[0][0][1]->model = rotate(this->disposition[0][0][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][1][1]->model = rotate(this->disposition[0][1][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][2][1]->model = rotate(this->disposition[0][2][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[1][0][1]->model = rotate(this->disposition[1][0][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[1][2][1]->model = rotate(this->disposition[1][2][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[2][0][1]->model = rotate(this->disposition[2][0][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[2][1][1]->model = rotate(this->disposition[2][1][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[2][2][1]->model = rotate(this->disposition[2][2][1]->model, radians(0.1f),
+                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->render(p, v, m,mvp,MatrixID);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    facegenrique *tmp=this->disposition[0][0][1];
+    this->disposition[0][0][1]= this->disposition[2][0][1];
+    this->disposition[2][0][1]=tmp;
 
+    tmp=this->disposition[0][0][1];
+    this->disposition[0][0][1]= this->disposition[2][2][1];
+    this->disposition[2][2][1]=tmp;
+
+    tmp=this->disposition[0][0][1];
+    this->disposition[0][0][1]= this->disposition[0][2][1];
+    this->disposition[0][2][1]=tmp;
+    tmp=this->disposition[0][1][1];
+    this->disposition[0][1][1]= this->disposition[1][0][1];
+    this->disposition[1][0][1]=tmp;
+
+    tmp=this->disposition[0][1][1];
+    this->disposition[0][1][1]= this->disposition[2][1][1];
+    this->disposition[2][1][1]=tmp;
+
+    tmp=this->disposition[0][1][1];
+    this->disposition[0][1][1]= this->disposition[1][2][1];
+    this->disposition[1][2][1]=tmp;
+
+
+}
+void CUBE::rotate3(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+
+    this->disposition[0][0][2]->model= rotate(this->disposition[0][0][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[0][1][2]->model= rotate(this->disposition[0][1][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[0][2][2]->model= rotate(this->disposition[0][2][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[1][0][2]->model= rotate(this->disposition[1][0][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[1][1][2]->model= rotate(this->disposition[1][1][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[1][2][2]->model= rotate(this->disposition[1][2][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[2][0][2]->model= rotate(this->disposition[2][0][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[2][1][2]->model= rotate(this->disposition[2][1][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+    this->disposition[2][2][2]->model= rotate(this->disposition[2][2][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+
+    facegenrique *tmp=this->disposition[0][0][2];
+    this->disposition[0][0][2]= this->disposition[2][0][2];
+    this->disposition[2][0][2]=tmp;
+
+    tmp=this->disposition[0][0][2];
+    this->disposition[0][0][2]= this->disposition[2][2][2];
+    this->disposition[2][2][2]=tmp;
+
+    tmp=this->disposition[0][0][2];
+    this->disposition[0][0][2]= this->disposition[0][2][2];
+    this->disposition[0][2][2]=tmp;
+
+    tmp=this->disposition[0][1][2];
+    this->disposition[0][1][2]= this->disposition[1][0][2];
+    this->disposition[1][0][2]=tmp;
+
+    tmp=this->disposition[0][1][2];
+    this->disposition[0][1][2]= this->disposition[2][1][2];
+    this->disposition[2][1][2]=tmp;
+
+    tmp=this->disposition[0][1][2];
+    this->disposition[0][1][2]= this->disposition[1][2][2];
+    this->disposition[1][2][2]=tmp;
+
+
+}
+void CUBE::rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+
+    this->disposition[0][0][0]->model= rotate(this->disposition[0][0][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][0][0]->model= rotate(this->disposition[1][0][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][0][0]->model= rotate(this->disposition[2][0][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[0][0][1]->model= rotate(this->disposition[0][0][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][0][1]->model= rotate(this->disposition[1][0][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][0][1]->model= rotate(this->disposition[2][0][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[0][0][2]->model= rotate(this->disposition[0][0][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][0][2]->model= rotate(this->disposition[1][0][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][0][2]->model= rotate(this->disposition[2][0][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    facegenrique *tmp=this->disposition[0][0][0];
+    this->disposition[0][0][0]= this->disposition[2][0][0];
+    this->disposition[2][0][0]=tmp;
+
+    tmp=this->disposition[0][0][0];
+    this->disposition[0][0][0]= this->disposition[2][0][2];
+    this->disposition[2][0][2]=tmp;
+
+    tmp=this->disposition[0][0][0];
+    this->disposition[0][0][0]= this->disposition[0][0][2];
+    this->disposition[0][0][2]=tmp;
+
+    tmp=this->disposition[1][0][0];
+    this->disposition[1][0][0]= this->disposition[2][0][1];
+    this->disposition[2][0][1]=tmp;
+
+    tmp=this->disposition[1][0][0];
+    this->disposition[1][0][0]= this->disposition[1][0][2];
+    this->disposition[1][0][2]=tmp;
+
+    tmp=this->disposition[1][0][0];
+    this->disposition[1][0][0]= this->disposition[0][0][1];
+    this->disposition[0][0][1]=tmp;
+}
+void CUBE::rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+
+    this->disposition[0][1][0]->model= rotate(this->disposition[0][1][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][1][0]->model= rotate(this->disposition[1][1][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][1][0]->model= rotate(this->disposition[2][1][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[0][1][1]->model= rotate(this->disposition[0][1][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][1][1]->model= rotate(this->disposition[1][1][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][1][1]->model= rotate(this->disposition[2][1][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[0][1][2]->model= rotate(this->disposition[0][1][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][1][2]->model= rotate(this->disposition[1][1][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][1][2]->model= rotate(this->disposition[2][1][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    facegenrique *tmp=this->disposition[0][1][0];
+    this->disposition[0][1][0]= this->disposition[2][1][0];
+    this->disposition[2][1][0]=tmp;
+
+    tmp=this->disposition[0][1][0];
+    this->disposition[0][1][0]= this->disposition[2][1][2];
+    this->disposition[2][1][2]=tmp;
+
+    tmp=this->disposition[0][1][0];
+    this->disposition[0][1][0]= this->disposition[0][1][2];
+    this->disposition[0][1][2]=tmp;
+
+    tmp=this->disposition[1][1][0];
+    this->disposition[1][1][0]= this->disposition[2][1][1];
+    this->disposition[2][1][1]=tmp;
+
+    tmp=this->disposition[1][1][0];
+    this->disposition[1][1][0]= this->disposition[1][1][2];
+    this->disposition[1][1][2]=tmp;
+
+    tmp=this->disposition[1][1][0];
+    this->disposition[1][1][0]= this->disposition[0][1][1];
+    this->disposition[0][1][1]=tmp;
+}
+void CUBE::rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+
+    this->disposition[0][2][0]->model= rotate(this->disposition[0][2][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][2][0]->model= rotate(this->disposition[1][2][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][2][0]->model= rotate(this->disposition[2][2][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[0][2][1]->model= rotate(this->disposition[0][2][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][2][1]->model= rotate(this->disposition[1][2][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][2][1]->model= rotate(this->disposition[2][2][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[0][2][2]->model= rotate(this->disposition[0][2][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[1][2][2]->model= rotate(this->disposition[1][2][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    this->disposition[2][2][2]->model= rotate(this->disposition[2][2][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+    facegenrique *tmp=this->disposition[0][2][0];
+    this->disposition[0][2][0]= this->disposition[2][2][0];
+    this->disposition[2][2][0]=tmp;
+
+    tmp=this->disposition[0][2][0];
+    this->disposition[0][2][0]= this->disposition[2][2][2];
+    this->disposition[2][2][2]=tmp;
+
+    tmp=this->disposition[0][2][0];
+    this->disposition[0][2][0]= this->disposition[0][2][2];
+    this->disposition[0][2][2]=tmp;
+
+    tmp=this->disposition[1][2][0];
+    this->disposition[1][2][0]= this->disposition[2][2][1];
+    this->disposition[2][2][1]=tmp;
+
+    tmp=this->disposition[1][2][0];
+    this->disposition[1][2][0]= this->disposition[1][2][2];
+    this->disposition[1][2][2]=tmp;
+
+    tmp=this->disposition[1][2][0];
+    this->disposition[1][2][0]= this->disposition[0][2][1];
+    this->disposition[0][2][1]=tmp;
 }

@@ -180,12 +180,16 @@ int main()
     View = lookAt(vec3(-2, 2, 5),vec3(0,0,0),vec3(0,1,0) );
 
     glUseProgram(ShaderProgram);
-
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+    rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
+    rublicx.rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+    rublicx.rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+    rublicx.rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
     while (!glfwWindowShouldClose(window))
     {   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 
-        glUseProgram(ShaderProgram);
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
+
 
         //- Lier le VAO :
 
@@ -195,9 +199,10 @@ int main()
 
 
 
+
         rublicx.render(&Projection,&View,&Model,MVP,&MatrixID);
 
-        rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID);
+
 
 
 
