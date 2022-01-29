@@ -163,35 +163,28 @@ void CUBE::render(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID) {
 
 }
 void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
-    for (float i=0;i<90;i=i+0.1)
+    for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 
 
-        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+        mat4 tmp1 = rotate(mat4(1.0), radians(0.1f),
                                                    vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[0][0][0]->model=tmp*this->disposition[0][0][0]->model;
-        tmp = rotate(mat4(1.0) ,radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[0][1][0]->model=tmp*this->disposition[0][1][0]->model;
-         tmp = rotate(mat4(1.0) ,radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[0][2][0]->model = tmp*this->disposition[0][2][0]->model;
-        tmp = rotate(mat4(1.0) ,radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][0][0]->model=tmp1*this->disposition[0][0][0]->model;
 
-        this->disposition[1][0][0]->model = tmp*this->disposition[1][0][0]->model;
-        tmp = rotate(mat4(1.0) ,radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[1][1][0]->model = tmp*this->disposition[1][1][0]->model;
+        this->disposition[0][1][0]->model=tmp1*this->disposition[0][1][0]->model;
 
-        tmp = rotate(mat4(1.0) ,radians(0.1f),vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[1][2][0]->model = tmp*this->disposition[1][2][0]->model;
+        this->disposition[0][2][0]->model = tmp1*this->disposition[0][2][0]->model;
 
-        tmp = rotate(mat4(1.0) ,radians(0.1f),vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[2][0][0]->model = tmp*this->disposition[2][0][0]->model;
-        this->disposition[2][1][0]->model = tmp*this->disposition[2][1][0]->model;
-        this->disposition[2][2][0]->model = tmp*this->disposition[2][0][0]->model;
+        this->disposition[1][0][0]->model = tmp1*this->disposition[1][0][0]->model;
+
+        this->disposition[1][1][0]->model = tmp1*this->disposition[1][1][0]->model;
+
+        this->disposition[1][2][0]->model = tmp1*this->disposition[1][2][0]->model;
+
+        this->disposition[2][0][0]->model = tmp1*this->disposition[2][0][0]->model;
+        this->disposition[2][1][0]->model = tmp1*this->disposition[2][1][0]->model;
+        this->disposition[2][2][0]->model = tmp1*this->disposition[2][2][0]->model;
 
         this->render(p, v, m,mvp,MatrixID);
         glfwSwapBuffers(window);
@@ -222,108 +215,115 @@ void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
         this->disposition[1][2][0]=tmp;
 
 
+
 }
 void CUBE::rotate2(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
-    for (float i=0;i<90;i=i+0.1)
+    for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][0][1]->model=tmp*this->disposition[0][0][1]->model;
+        this->disposition[0][1][1]->model=tmp*this->disposition[0][1][1]->model;
+        this->disposition[0][2][1]->model = tmp*this->disposition[0][2][1]->model;
+        this->disposition[1][0][1]->model = tmp*this->disposition[1][0][1]->model;
 
-        this->disposition[0][0][1]->model = rotate(this->disposition[0][0][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[0][1][1]->model = rotate(this->disposition[0][1][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[0][2][1]->model = rotate(this->disposition[0][2][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[1][0][1]->model = rotate(this->disposition[1][0][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[1][2][1]->model = rotate(this->disposition[1][2][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[2][0][1]->model = rotate(this->disposition[2][0][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[2][1][1]->model = rotate(this->disposition[2][1][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
-        this->disposition[2][2][1]->model = rotate(this->disposition[2][2][1]->model, radians(0.1f),
-                                                   vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[1][2][1]->model = tmp*this->disposition[1][2][1]->model;
+        this->disposition[2][0][1]->model = tmp*this->disposition[2][0][1]->model;
+        this->disposition[2][1][1]->model = tmp*this->disposition[2][1][1]->model;
+        this->disposition[2][2][1]->model = tmp*this->disposition[2][2][1]->model;
+
 
         this->render(p, v, m,mvp,MatrixID);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    facegenrique *tmp=this->disposition[0][0][1];
+    facegenrique *tmp2=this->disposition[0][0][1];
     this->disposition[0][0][1]= this->disposition[2][0][1];
-    this->disposition[2][0][1]=tmp;
+    this->disposition[2][0][1]=tmp2;
 
-    tmp=this->disposition[0][0][1];
+    tmp2=this->disposition[0][0][1];
     this->disposition[0][0][1]= this->disposition[2][2][1];
-    this->disposition[2][2][1]=tmp;
+    this->disposition[2][2][1]=tmp2;
 
-    tmp=this->disposition[0][0][1];
+    tmp2=this->disposition[0][0][1];
     this->disposition[0][0][1]= this->disposition[0][2][1];
-    this->disposition[0][2][1]=tmp;
-    tmp=this->disposition[0][1][1];
+    this->disposition[0][2][1]=tmp2;
+    tmp2=this->disposition[0][1][1];
     this->disposition[0][1][1]= this->disposition[1][0][1];
-    this->disposition[1][0][1]=tmp;
+    this->disposition[1][0][1]=tmp2;
 
-    tmp=this->disposition[0][1][1];
+    tmp2=this->disposition[0][1][1];
     this->disposition[0][1][1]= this->disposition[2][1][1];
-    this->disposition[2][1][1]=tmp;
+    this->disposition[2][1][1]=tmp2;
 
-    tmp=this->disposition[0][1][1];
+    tmp2=this->disposition[0][1][1];
     this->disposition[0][1][1]= this->disposition[1][2][1];
-    this->disposition[1][2][1]=tmp;
+    this->disposition[1][2][1]=tmp2;
 
 
 }
 void CUBE::rotate3(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
 
-    for (float i=0;i<90;i=i+0.1)
+    for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 
 
-        this->disposition[0][0][2]->model= rotate(this->disposition[0][0][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[0][1][2]->model= rotate(this->disposition[0][1][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[0][2][2]->model= rotate(this->disposition[0][2][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[1][0][2]->model= rotate(this->disposition[1][0][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[1][1][2]->model= rotate(this->disposition[1][1][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[1][2][2]->model= rotate(this->disposition[1][2][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[2][0][2]->model= rotate(this->disposition[2][0][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[2][1][2]->model= rotate(this->disposition[2][1][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
-    this->disposition[2][2][2]->model= rotate(this->disposition[2][2][2]->model,radians(0.3f),vec3(0.0f,1.0f,0.0f));
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(0.0f, 1.0f, 0.0f));
+        this->disposition[0][0][2]->model=tmp*this->disposition[0][0][2]->model;
+
+        this->disposition[0][1][2]->model=tmp*this->disposition[0][1][2]->model;
+
+        this->disposition[0][2][2]->model = tmp*this->disposition[0][2][2]->model;
+
+        this->disposition[1][0][2]->model = tmp*this->disposition[1][0][2]->model;
+
+        this->disposition[1][1][2]->model = tmp*this->disposition[1][1][2]->model;
+
+        this->disposition[1][2][2]->model = tmp*this->disposition[1][2][2]->model;
+
+        this->disposition[2][0][2]->model = tmp*this->disposition[2][0][2]->model;
+        this->disposition[2][1][2]->model = tmp*this->disposition[2][1][2]->model;
+        this->disposition[2][2][2]->model = tmp*this->disposition[2][2][2]->model;
+
         this->render(p, v, m,mvp,MatrixID);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    facegenrique *tmp=this->disposition[0][0][2];
+    facegenrique *tmp2=this->disposition[0][0][2];
     this->disposition[0][0][2]= this->disposition[2][0][2];
-    this->disposition[2][0][2]=tmp;
+    this->disposition[2][0][2]=tmp2;
 
-    tmp=this->disposition[0][0][2];
+    tmp2=this->disposition[0][0][2];
     this->disposition[0][0][2]= this->disposition[2][2][2];
-    this->disposition[2][2][2]=tmp;
+    this->disposition[2][2][2]=tmp2;
 
-    tmp=this->disposition[0][0][2];
+    tmp2=this->disposition[0][0][2];
     this->disposition[0][0][2]= this->disposition[0][2][2];
-    this->disposition[0][2][2]=tmp;
+    this->disposition[0][2][2]=tmp2;
 
-    tmp=this->disposition[0][1][2];
+    tmp2=this->disposition[0][1][2];
     this->disposition[0][1][2]= this->disposition[1][0][2];
-    this->disposition[1][0][2]=tmp;
+    this->disposition[1][0][2]=tmp2;
 
-    tmp=this->disposition[0][1][2];
+    tmp2=this->disposition[0][1][2];
     this->disposition[0][1][2]= this->disposition[2][1][2];
-    this->disposition[2][1][2]=tmp;
+    this->disposition[2][1][2]=tmp2;
 
-    tmp=this->disposition[0][1][2];
+    tmp2=this->disposition[0][1][2];
     this->disposition[0][1][2]= this->disposition[1][2][2];
-    this->disposition[1][2][2]=tmp;
+    this->disposition[1][2][2]=tmp2;
 
 
 }
 void CUBE::rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
 
-    for (float i=0;i<90;i=i+0.1)
+    for (float i=0;i<=90;i=i+0.1)
     {
+
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
         mat4 tmp = rotate(mat4(1.0), radians(0.1f),
                           vec3(1.0f, 0.0f, 0.0f));
@@ -341,45 +341,46 @@ void CUBE::rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    facegenrique *tmp=this->disposition[0][0][0];
+    facegenrique *tmp2=this->disposition[0][0][0];
     this->disposition[0][0][0]= this->disposition[2][0][0];
-    this->disposition[2][0][0]=tmp;
+    this->disposition[2][0][0]=tmp2;
 
-    tmp=this->disposition[0][0][0];
+    tmp2=this->disposition[0][0][0];
     this->disposition[0][0][0]= this->disposition[2][0][2];
-    this->disposition[2][0][2]=tmp;
+    this->disposition[2][0][2]=tmp2;
 
-    tmp=this->disposition[0][0][0];
+    tmp2=this->disposition[0][0][0];
     this->disposition[0][0][0]= this->disposition[0][0][2];
-    this->disposition[0][0][2]=tmp;
+    this->disposition[0][0][2]=tmp2;
 
-    tmp=this->disposition[1][0][0];
+    tmp2=this->disposition[1][0][0];
     this->disposition[1][0][0]= this->disposition[2][0][1];
-    this->disposition[2][0][1]=tmp;
+    this->disposition[2][0][1]=tmp2;
 
-    tmp=this->disposition[1][0][0];
+    tmp2=this->disposition[1][0][0];
     this->disposition[1][0][0]= this->disposition[1][0][2];
-    this->disposition[1][0][2]=tmp;
+    this->disposition[1][0][2]=tmp2;
 
-    tmp=this->disposition[1][0][0];
+    tmp2=this->disposition[1][0][0];
     this->disposition[1][0][0]= this->disposition[0][0][1];
-    this->disposition[0][0][1]=tmp;
+    this->disposition[0][0][1]=tmp2;
 }
 void CUBE::rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
 
-    for (float i=0;i<90;i=i+0.1)
+    for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(1.0f, 0.0f, 0.0f));
+        this->disposition[0][1][0]->model=tmp*this->disposition[0][1][0]->model;
+        this->disposition[1][1][0]->model=tmp*this->disposition[1][1][0]->model;
+        this->disposition[2][1][0]->model=tmp*this->disposition[2][1][0]->model;
+        this->disposition[0][1][1]->model=tmp*this->disposition[0][1][1]->model;
 
-    this->disposition[0][1][0]->model= rotate(this->disposition[0][1][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[1][1][0]->model= rotate(this->disposition[1][1][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[2][1][0]->model= rotate(this->disposition[2][1][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[0][1][1]->model= rotate(this->disposition[0][1][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-
-    this->disposition[2][1][1]->model= rotate(this->disposition[2][1][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[0][1][2]->model= rotate(this->disposition[0][1][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[1][1][2]->model= rotate(this->disposition[1][1][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[2][1][2]->model= rotate(this->disposition[2][1][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+        this->disposition[2][1][1]->model=tmp*this->disposition[2][1][1]->model;
+        this->disposition[0][1][2]->model=tmp*this->disposition[0][1][2]->model;
+        this->disposition[1][1][2]->model=tmp*this->disposition[1][1][2]->model;
+        this->disposition[2][1][2]->model=tmp*this->disposition[2][1][2]->model;
         this->render(p, v, m,mvp,MatrixID);
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -411,20 +412,22 @@ void CUBE::rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
 }
 void CUBE::rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
 
-    for (float i=0;i<90;i=i+0.1)
+    for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 
 
-        this->disposition[0][2][0]->model= rotate(this->disposition[0][2][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[1][2][0]->model= rotate(this->disposition[1][2][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[2][2][0]->model= rotate(this->disposition[2][2][0]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[0][2][1]->model= rotate(this->disposition[0][2][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[1][2][1]->model= rotate(this->disposition[1][2][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[2][2][1]->model= rotate(this->disposition[2][2][1]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[0][2][2]->model= rotate(this->disposition[0][2][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[1][2][2]->model= rotate(this->disposition[1][2][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
-    this->disposition[2][2][2]->model= rotate(this->disposition[2][2][2]->model,radians(0.1f),vec3(1.0f,0.0f,0.0f));
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(1.0f, 0.0f, 0.0f));
+        this->disposition[0][2][0]->model=tmp*this->disposition[0][2][0]->model;
+        this->disposition[1][2][0]->model=tmp*this->disposition[1][2][0]->model;
+        this->disposition[2][2][0]->model=tmp*this->disposition[2][2][0]->model;
+        this->disposition[0][2][1]->model=tmp*this->disposition[0][2][1]->model;
+        this->disposition[1][2][1]->model=tmp*this->disposition[1][2][1]->model;
+        this->disposition[2][2][1]->model=tmp*this->disposition[2][2][1]->model;
+        this->disposition[0][2][2]->model=tmp*this->disposition[0][2][2]->model;
+        this->disposition[1][2][2]->model=tmp*this->disposition[1][2][2]->model;
+        this->disposition[2][2][2]->model=tmp*this->disposition[2][2][2]->model;
         this->render(p, v, m,mvp,MatrixID);
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -452,4 +455,148 @@ void CUBE::rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp=this->disposition[1][2][0];
     this->disposition[1][2][0]= this->disposition[0][2][1];
     this->disposition[0][2][1]=tmp;
+}
+void CUBE::rotate7(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+    for (float i=0;i<=90;i=i+0.1)
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+
+
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(0.0f, 0.0f, 1.0f));
+        this->disposition[0][0][0]->model=tmp*this->disposition[0][0][0]->model;
+        this->disposition[0][1][0]->model=tmp*this->disposition[0][1][0]->model;
+        this->disposition[0][2][0]->model=tmp*this->disposition[0][2][0]->model;
+        this->disposition[0][0][1]->model=tmp*this->disposition[0][0][1]->model;
+        this->disposition[0][1][1]->model=tmp*this->disposition[0][1][1]->model;
+        this->disposition[0][2][1]->model=tmp*this->disposition[0][2][1]->model;
+        this->disposition[0][0][2]->model=tmp*this->disposition[0][0][2]->model;
+        this->disposition[0][1][2]->model=tmp*this->disposition[0][1][2]->model;
+        this->disposition[0][2][2]->model=tmp*this->disposition[0][2][2]->model;
+        this->render(p, v, m,mvp,MatrixID);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    facegenrique *tmp=this->disposition[0][0][0];
+    this->disposition[0][0][0]= this->disposition[0][0][2];
+    this->disposition[0][0][2]=tmp;
+
+    tmp=this->disposition[0][0][0];
+    this->disposition[0][0][0]= this->disposition[0][2][2];
+    this->disposition[0][2][2]=tmp;
+
+    tmp=this->disposition[0][0][0];
+    this->disposition[0][0][0]= this->disposition[0][2][0];
+    this->disposition[0][2][0]=tmp;
+
+    tmp=this->disposition[0][1][0];
+    this->disposition[0][1][0]= this->disposition[0][0][1];
+    this->disposition[0][0][1]=tmp;
+
+    tmp=this->disposition[0][1][0];
+    this->disposition[0][1][0]= this->disposition[0][1][2];
+    this->disposition[0][1][2]=tmp;
+
+    tmp=this->disposition[0][1][0];
+    this->disposition[0][1][0]= this->disposition[0][2][1];
+    this->disposition[0][2][1]=tmp;
+
+
+}
+void CUBE::rotate8(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+    for (float i=0;i<=90;i=i+0.1)
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+
+
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(0.0f, 0.0f, 1.0f));
+        this->disposition[1][0][0]->model=tmp*this->disposition[1][0][0]->model;
+        this->disposition[1][1][0]->model=tmp*this->disposition[1][1][0]->model;
+        this->disposition[1][2][0]->model=tmp*this->disposition[1][2][0]->model;
+        this->disposition[1][0][1]->model=tmp*this->disposition[1][0][1]->model;
+
+        this->disposition[1][2][1]->model=tmp*this->disposition[1][2][1]->model;
+        this->disposition[1][0][2]->model=tmp*this->disposition[1][0][2]->model;
+        this->disposition[1][1][2]->model=tmp*this->disposition[1][1][2]->model;
+        this->disposition[1][2][2]->model=tmp*this->disposition[1][2][2]->model;
+        this->render(p, v, m,mvp,MatrixID);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    facegenrique *tmp=this->disposition[1][0][0];
+    this->disposition[1][0][0]= this->disposition[1][0][2];
+    this->disposition[1][0][2]=tmp;
+
+    tmp=this->disposition[1][0][0];
+    this->disposition[1][0][0]= this->disposition[1][2][2];
+    this->disposition[1][2][2]=tmp;
+
+    tmp=this->disposition[1][0][0];
+    this->disposition[1][0][0]= this->disposition[1][2][0];
+    this->disposition[1][2][0]=tmp;
+
+    tmp=this->disposition[1][1][0];
+    this->disposition[1][1][0]= this->disposition[1][0][1];
+    this->disposition[1][0][1]=tmp;
+
+    tmp=this->disposition[1][1][0];
+    this->disposition[1][1][0]= this->disposition[0][1][2];
+    this->disposition[1][1][2]=tmp;
+
+    tmp=this->disposition[1][1][0];
+    this->disposition[1][1][0]= this->disposition[1][2][1];
+    this->disposition[1][2][1]=tmp;
+
+
+}
+void CUBE::rotate9(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+
+    for (float i=0;i<=90;i=i+0.1)
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
+
+
+        mat4 tmp = rotate(mat4(1.0), radians(0.1f),
+                          vec3(0.0f, 0.0f, 1.0f));
+        this->disposition[2][0][0]->model=tmp*this->disposition[2][0][0]->model;
+        this->disposition[2][1][0]->model=tmp*this->disposition[2][1][0]->model;
+        this->disposition[2][2][0]->model=tmp*this->disposition[2][2][0]->model;
+        this->disposition[2][0][1]->model=tmp*this->disposition[2][0][1]->model;
+        this->disposition[2][1][1]->model=tmp*this->disposition[2][1][1]->model;
+        this->disposition[2][2][1]->model=tmp*this->disposition[2][2][1]->model;
+        this->disposition[2][0][2]->model=tmp*this->disposition[2][0][2]->model;
+        this->disposition[2][1][2]->model=tmp*this->disposition[2][1][2]->model;
+        this->disposition[2][2][2]->model=tmp*this->disposition[2][2][2]->model;
+        this->render(p, v, m,mvp,MatrixID);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    facegenrique *tmp=this->disposition[2][0][0];
+    this->disposition[2][0][0]= this->disposition[2][0][2];
+    this->disposition[2][0][2]=tmp;
+
+    tmp=this->disposition[2][0][0];
+    this->disposition[2][0][0]= this->disposition[2][2][2];
+    this->disposition[2][2][2]=tmp;
+
+    tmp=this->disposition[2][0][0];
+    this->disposition[2][0][0]= this->disposition[2][2][0];
+    this->disposition[2][2][0]=tmp;
+
+    tmp=this->disposition[2][1][0];
+    this->disposition[2][1][0]= this->disposition[2][0][1];
+    this->disposition[2][0][1]=tmp;
+
+    tmp=this->disposition[2][1][0];
+    this->disposition[2][1][0]= this->disposition[2][1][2];
+    this->disposition[2][1][2]=tmp;
+
+    tmp=this->disposition[2][1][0];
+    this->disposition[2][1][0]= this->disposition[2][2][1];
+    this->disposition[2][2][1]=tmp;
+
+
 }

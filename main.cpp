@@ -182,25 +182,28 @@ int main()
     glUseProgram(ShaderProgram);
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-    rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
-    rublicx.rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
 
-    rublicx.rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
+
     while (!glfwWindowShouldClose(window))
     {   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 
 
-
-
-        //- Lier le VAO :
-
+        //
 
 
 
 
 
+        rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
+        rublicx.rotate9(&Projection,&View,&Model,MVP,&MatrixID,window);
+        rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
 
+        rublicx.rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
+        rublicx.rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+        rublicx.rotate6(&Projection,&View,&Model,MVP,&MatrixID,window);
 
+        rublicx.rotate5(&Projection,&View,&Model,MVP,&MatrixID,window);
+        rublicx.rotate3(&Projection,&View,&Model,MVP,&MatrixID,window);
         rublicx.render(&Projection,&View,&Model,MVP,&MatrixID);
 
 
@@ -209,6 +212,9 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+        //- Lier le VAO :
+
 
 
 
