@@ -184,7 +184,7 @@ facetriple::facetriple(int nb) {
                     vec3(-0.340f, -1.00, 1.0f), vec3(1.0f, 0.5f, 0.15f),
 
             };
-            for (int i = 0; i < 12; i++) {
+            for (int i = 0; i < 18; i++) {
                 this->attribut[i] = attribut[i];
             }
             break;
