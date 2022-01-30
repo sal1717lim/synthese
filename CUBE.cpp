@@ -162,7 +162,7 @@ void CUBE::render(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID) {
     }
 
 }
-void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
     for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
@@ -213,11 +213,11 @@ void CUBE::rotate1(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
         tmp=this->disposition[0][1][0];
         this->disposition[0][1][0]= this->disposition[1][2][0];
         this->disposition[1][2][0]=tmp;
-
+        *action=*action+ "1";
 
 
 }
-void CUBE::rotate2(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate2(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
     for (float i=0;i<=90;i=i+0.1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
@@ -261,9 +261,9 @@ void CUBE::rotate2(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     this->disposition[0][1][1]= this->disposition[1][2][1];
     this->disposition[1][2][1]=tmp2;
 
-
+    *action=*action+ "2";
 }
-void CUBE::rotate3(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate3(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -315,10 +315,11 @@ void CUBE::rotate3(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp2=this->disposition[0][1][2];
     this->disposition[0][1][2]= this->disposition[1][2][2];
     this->disposition[1][2][2]=tmp2;
+    *action=*action+ "3";
 
 
 }
-void CUBE::rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -364,8 +365,10 @@ void CUBE::rotate4(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp2=this->disposition[1][0][0];
     this->disposition[1][0][0]= this->disposition[0][0][1];
     this->disposition[0][0][1]=tmp2;
+
+    *action=*action+ "4";
 }
-void CUBE::rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -409,8 +412,9 @@ void CUBE::rotate5(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp=this->disposition[1][1][0];
     this->disposition[1][1][0]= this->disposition[0][1][1];
     this->disposition[0][1][1]=tmp;
+    *action=*action+ "5";
 }
-void CUBE::rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -455,8 +459,10 @@ void CUBE::rotate6(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp=this->disposition[1][2][0];
     this->disposition[1][2][0]= this->disposition[0][2][1];
     this->disposition[0][2][1]=tmp;
+
+    *action=*action+ "6";
 }
-void CUBE::rotate7(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate7(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -501,10 +507,10 @@ void CUBE::rotate7(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp=this->disposition[0][1][0];
     this->disposition[0][1][0]= this->disposition[0][2][1];
     this->disposition[0][2][1]=tmp;
-
+    *action=*action+ "7";
 
 }
-void CUBE::rotate8(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate8(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -550,9 +556,11 @@ void CUBE::rotate8(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     this->disposition[1][1][0]= this->disposition[1][2][1];
     this->disposition[1][2][1]=tmp;
 
+    *action=*action+ "8";
+
 
 }
-void CUBE::rotate9(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window) {
+void CUBE::rotate9(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindow *window,string *action) {
 
     for (float i=0;i<=90;i=i+0.1)
     {
@@ -597,6 +605,6 @@ void CUBE::rotate9(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     tmp=this->disposition[2][1][0];
     this->disposition[2][1][0]= this->disposition[2][2][1];
     this->disposition[2][2][1]=tmp;
-
+    *action=*action+ "9";
 
 }

@@ -13,7 +13,7 @@
 #include "facedouble.h"
 #include <algorithm>
 #include "CUBE.h"
-
+string actions="";
 using namespace std;
 using namespace glm;
 #include <stdlib.h>
@@ -141,31 +141,31 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         switch (key)
         {
             case GLFW_KEY_R :
-                rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_T :
-                rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_Y :
-                rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_F :
-                rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_G :
-                rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_H :
-                rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_V :
-                rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_B :
-                rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case GLFW_KEY_N :
-                rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window);
+                rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                 break;
             case 262:
 
@@ -184,40 +184,97 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
             case GLFW_KEY_SPACE:
                 srand(std::time(0));
-                for (int i=0;i<10;i++){
+                for (int i=0;i<15;i++){
                     int shuff =rand()%9;
                     switch (shuff) {
                         case 0:
-                            rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 1:
-                            rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 2:
-                            rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 3:
-                            rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 4:
-                            rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 5:
-                            rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 6:
-                            rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 7:
-                            rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                         case 8:
-                            rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
                             break;
                     }
+
                 }
-            default:
-                glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
+                break;
+            case GLFW_KEY_LEFT_SHIFT:
+                int l=actions.length();
+                for(int i=l-1;i>=0;i--) {
+                    switch (actions[i]) {
+                        case '1' :
+                            rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '2' :
+                            rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '3' :
+                            rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '4' :
+                            rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '5' :
+                            rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '6' :
+                            rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '7' :
+                            rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '8' :
+                            rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        case '9' :
+                            rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window,&actions);
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                actions.clear();
+                break;
+
         }
 }
 
