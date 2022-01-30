@@ -543,7 +543,7 @@ void CUBE::rotate8(mat4 *p, mat4 *v, mat4 *m,mat4 mvp,GLuint *MatrixID,GLFWwindo
     this->disposition[1][0][1]=tmp;
 
     tmp=this->disposition[1][1][0];
-    this->disposition[1][1][0]= this->disposition[0][1][2];
+    this->disposition[1][1][0]= this->disposition[1][1][2];
     this->disposition[1][1][2]=tmp;
 
     tmp=this->disposition[1][1][0];

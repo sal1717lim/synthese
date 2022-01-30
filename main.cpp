@@ -13,17 +13,16 @@
 #include "facedouble.h"
 #include <algorithm>
 #include "CUBE.h"
+
 using namespace std;
 using namespace glm;
 #include <stdlib.h>
 #include <string.h>
 #include <glad/glad.h>
 #include "facetriple.h"
+#include <ctime>
+float rayon = 7.0;
 
-float rayon = 5.0;
-float Xcam = rayon * sin(glfwGetTime());
-float Zcam = rayon * cos(glfwGetTime());
-float Ycam = rayon * cos(glfwGetTime());
 mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 mat4 View ;
 mat4 Model = mat4(1.0f);
@@ -31,6 +30,9 @@ mat4 MVP;
 float cptx=0;
 float cpty=0;
 float cptz=0;
+float Xcam = rayon * sin(cptx);
+float Zcam = rayon * cos(cptz);
+float Ycam =3;
 GLuint VAO;
 GLuint VBO;
 
@@ -125,15 +127,105 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
     return ProgramID;
 }
 using namespace std;
+CUBE *rublicx;
+GLuint MatrixID;
+
 
 static void error_callback(int error, const char *description)
 {
     fputs(description, stderr);
 }
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (action == GLFW_PRESS)
+        switch (key)
+        {
+            case GLFW_KEY_R :
+                rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_T :
+                rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_Y :
+                rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_F :
+                rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_G :
+                rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_H :
+                rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_V :
+                rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_B :
+                rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case GLFW_KEY_N :
+                rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window);
+                break;
+            case 262:
+
+                Xcam = rayon * sin(radians(cptx));
+                cptx=cptx+3;
+                Zcam = rayon * cos(radians(cptz));
+                cptz=cptz+3;
+
+                break;
+            case 263:
+                Xcam = rayon * sin(radians(cptx));
+                cptx=cptx-3;
+                Zcam = rayon * cos(radians(cptz));
+                cptz=cptz-3;
+                break;
+
+            case GLFW_KEY_SPACE:
+                srand(std::time(0));
+                for (int i=0;i<10;i++){
+                    int shuff =rand()%9;
+                    switch (shuff) {
+                        case 0:
+                            rublicx->rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 1:
+                            rublicx->rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 2:
+                            rublicx->rotate3(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 3:
+                            rublicx->rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 4:
+                            rublicx->rotate5(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 5:
+                            rublicx->rotate6(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 6:
+                            rublicx->rotate7(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 7:
+                            rublicx->rotate8(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                        case 8:
+                            rublicx->rotate9(&Projection,&View,&Model,MVP,&MatrixID,window);
+                            break;
+                    }
+                }
+            default:
+                glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
+        }
+}
+
 void Resize(GLFWwindow* window, int width, int height)
 {
     glViewport(0,0,width,height);
 }
+
 int main()
 {
 
@@ -164,8 +256,8 @@ int main()
     glfwSetFramebufferSizeCallback(window, Resize);
 
     glfwMakeContextCurrent(window);
-
-    CUBE rublicx=CUBE();
+    glfwSetKeyCallback(window, key_callback) ;
+    rublicx=new CUBE();
     GLuint ShaderProgram=LoadShaders("C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleVertexShader.vertexshader","C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleFragmentShader.fragmentshader");
 
     Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
@@ -174,10 +266,10 @@ int main()
 
 
 
-    GLuint MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
+    MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    View = lookAt(vec3(-2, 2, 5),vec3(0,0,0),vec3(0,1,0) );
+    View = lookAt(vec3(Xcam, Ycam, Zcam),vec3(0,0,0),vec3(0,1,0) );
 
     glUseProgram(ShaderProgram);
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
@@ -189,22 +281,12 @@ int main()
 
 
         //
+        View = lookAt(vec3(Xcam, Ycam, Zcam),vec3(0,0,0),vec3(0,1,0) );
 
 
 
 
-
-        rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
-        rublicx.rotate9(&Projection,&View,&Model,MVP,&MatrixID,window);
-        rublicx.rotate1(&Projection,&View,&Model,MVP,&MatrixID,window);
-
-        rublicx.rotate4(&Projection,&View,&Model,MVP,&MatrixID,window);
-        rublicx.rotate2(&Projection,&View,&Model,MVP,&MatrixID,window);
-        rublicx.rotate6(&Projection,&View,&Model,MVP,&MatrixID,window);
-
-        rublicx.rotate5(&Projection,&View,&Model,MVP,&MatrixID,window);
-        rublicx.rotate3(&Projection,&View,&Model,MVP,&MatrixID,window);
-        rublicx.render(&Projection,&View,&Model,MVP,&MatrixID);
+        rublicx->render(&Projection,&View,&Model,MVP,&MatrixID);
 
 
 
