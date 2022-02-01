@@ -5,6 +5,7 @@
 #include "CUBE.h"
 #include <glfw/glfw3.h>
 CUBE::CUBE() {
+
     this->haut=face(1);
     this->droite=face(2);
     this->bas=face(5);

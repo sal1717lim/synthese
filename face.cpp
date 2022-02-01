@@ -22,7 +22,7 @@ face::face(){
 face::face(int nb) {
     this->model=mat4(1.0);
     switch(nb){
-        case 0: {
+        case 0:{
             STRVertex attribut[] = {
                     vec3(-0.33f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
                     vec3(0.32f, 0.330f, 1.0f), vec3(1.0f, 0.0f, 0.0f),
@@ -36,7 +36,6 @@ face::face(int nb) {
             }
             break;
         }
-
         case 1:
         {
             STRVertex attribut[] = {
@@ -112,14 +111,11 @@ face::face(int nb) {
             }
             break;
         }
-
     }
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
-
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
     glBufferData(GL_ARRAY_BUFFER, sizeof(attribut), attribut, GL_STATIC_DRAW);
     //- Lier le premier buffer d'attributs (les sommets) et configurer le pointeur :
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(STRVertex) , (void*)offsetof(STRVertex,position) );
@@ -130,7 +126,6 @@ face::face(int nb) {
     //- Débinder le VAO et le VBO :
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-
 }
 
 void face::load() {

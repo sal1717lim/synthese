@@ -35,8 +35,19 @@ float Zcam = rayon * cos(cptz);
 float Ycam =3;
 GLuint VAO;
 GLuint VBO;
+float zoom=45;
+double Xpos=0;
+double Ypos=0;
+static void cursor_position(GLFWwindow* window, double x, double y)
+{               Xcam = rayon * sin(radians((Xpos-x)/1.5));
+                cptx=cptx+3;
+                Zcam = rayon * cos(radians((Xpos-x)/1.5));
 
 
+
+
+
+}
 GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path){
 
     // Create the shaders
@@ -181,6 +192,14 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
                 Zcam = rayon * cos(radians(cptz));
                 cptz=cptz-3;
                 break;
+            case 265:
+                zoom--;
+                Projection = perspective(radians(zoom), 4.0f / 3.0f, 0.1f, 100.0f);
+                break;
+            case 264:
+                zoom++;
+                Projection = perspective(radians(zoom), 4.0f / 3.0f, 0.1f, 100.0f);
+                break;
 
             case GLFW_KEY_SPACE:
                 srand(std::time(0));
@@ -317,13 +336,14 @@ int main()
     rublicx=new CUBE();
     GLuint ShaderProgram=LoadShaders("C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleVertexShader.vertexshader","C:\\Users\\SALIM\\CLionProjects\\clion-glfw-master\\shader\\SimpleFragmentShader.fragmentshader");
 
-    Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+    Projection = perspective(radians(zoom), 4.0f / 3.0f, 0.1f, 100.0f);
     Model = mat4(1.0f);
 
 
 
 
     MatrixID = glGetUniformLocation(ShaderProgram, "MVP");
+    glfwSetCursorPosCallback(window, cursor_position);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     View = lookAt(vec3(Xcam, Ycam, Zcam),vec3(0,0,0),vec3(0,1,0) );
@@ -331,7 +351,7 @@ int main()
     glUseProgram(ShaderProgram);
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-
+    glClearColor(0.72,0.47,0.34,0.5);
 
     while (!glfwWindowShouldClose(window))
     {   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;

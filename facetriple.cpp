@@ -4,6 +4,8 @@
 
 #include "facetriple.h"
 facetriple::facetriple() {}
+
+
 facetriple::facetriple(int nb) {
     this->model=mat4(1.0);
     switch (nb) {
@@ -268,3 +270,6 @@ facetriple::facetriple(int nb) {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
+
+
+
